@@ -13,6 +13,10 @@ class Body:
     def __str__(self):
         return "<pos:%s, vel:%s, mass:%.2f>" % (self.position, self.velocity, self.mass)
 
+    def does_collide(self, body: "Body"):
+        pos = self.position - body.position
+        return pos.norm() <= (self.draw_radius + body.draw_radius)**2
+
 
 class World:
     def __init__(self):
@@ -34,6 +38,9 @@ class World:
             return self._bodies[id_]
         return None
 
+    def remove(self, id_):
+        self._bodies.remove('id_')
+        
     def bodies(self):
         """ Return a generator of all the bodies. """
         for body in self._bodies:
