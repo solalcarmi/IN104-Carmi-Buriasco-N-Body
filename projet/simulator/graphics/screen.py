@@ -82,6 +82,7 @@ class Screen:
     def __draw_world(self, s, world):
         for body in world.bodies():
             screen_pos = self.camera.to_screen_coords(body.position)
+            print("Body", screen_pos)
             pg.draw.circle(s, body.color,
                            (int(screen_pos.get_x()), int(screen_pos.get_y())),
                            int(body.draw_radius), 0)
